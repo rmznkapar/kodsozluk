@@ -1,5 +1,6 @@
 const Entry = require('./models/Entry');
 const Account = require('./models/Account');
+const fs = require('fs')
 
 const countEntry = async (cond = {}) => {
   return await Entry.count(cond).exec();
@@ -58,10 +59,34 @@ const getEntries = async (cond = {}, limit = 10, page = 1, getUser = true) => {
   return entries;
 }
 
+const blacklistImport = (filename) => {
+  let rawdata = fs.readFileSync(filename)
+  let blacklist = JSON.parse(rawdata)
+  return blacklist 
+}
+
+
+const entryContentFilter = (body,blacklist) => {
+  body = body.split(" ")
+  for(let i=0;i<body.length;i++){
+    for (let j = 0;j<blacklist.length;j++){
+      if(body[i] == blacklist[j]){
+        body[i] = "*".repeat(blacklist[j].length)
+      }
+    }
+  }
+  let filteredbody = ""
+  for (let i=0;i<body.length;i++){
+    filteredbody += body[i] + " "
+  }
+  return filteredbody
+}
+
 const saveEntry = (title, body, user) => {
+  let filteredContent = entryContentFilter(body,blacklistImport('wordBlacklist.json'))
   const entry = new Entry({
     title: title,
-    body: body,
+    body: filteredContent,
     user: user
   });
   entry.save((err) => {
