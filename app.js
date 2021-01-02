@@ -29,6 +29,16 @@ app.engine( 'hbs', hbs( {
       for(var i = from; i < to; i += incr)
           accum += block.fn(i);
       return accum;
+    },
+    findVote: (elem, list) => {
+      for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        console.log(element.userId, elem);
+        if (element.userId == elem) {
+          return element.rate;
+        }
+      }
+      return '0';
     }
   }
 } ) );
@@ -58,6 +68,7 @@ app.use((req, res, next) => {
   if (req.user) {
     res.locals.user = req.user;
     res.locals.username = req.user.username;
+    res.locals.userId = req.user._id;
   }
   next();
 });

@@ -36,3 +36,23 @@ exports.postTerm = (req, res) => {
   return res.redirect(req.get('referer'));
 }
 
+exports.vote = async (req, res) => {
+  const {entryId, rate} = req.body;
+  method.vote(entryId, rate, req.user._id).then((data) => {
+    return res.send(data.toString());
+  });
+}
+
+// exports.postSearch = (req, res) => {
+//   var query = req.body.query;
+//   console.log(query);
+//   if (query.length < 4) {
+//     console.log(query.length);
+//     return res.send([]);
+//   }
+//   // console.log(res.body.query);
+//   const queryRegex = new RegExp(query, 'i');
+//   method.getEntries({title: queryRegex}, 5, 1).then((entries) => {
+//     return res.send(entries);
+//   })
+// }

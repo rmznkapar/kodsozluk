@@ -10,3 +10,12 @@ html {
 .flex-1 {
   flex: 1;
 }
+.vote-item {
+  color: gray;
+}
+.vote-item.up.active {
+  color: green;
+}
+.vote-item.down.active {
+  color: red;
+}

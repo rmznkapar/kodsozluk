@@ -19,10 +19,21 @@ var Entry = new Schema({
     required: true,
     max: 16
   },
+  votes: {
+    type: [ {userId: String, rate: Number} ],
+    required: true,
+    default: [],
+  },
+  voteRate: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   date: {
     type: Date,
     default: new Date(),
   }
 });
+
 
 module.exports = mongoose.model('Entry', Entry);

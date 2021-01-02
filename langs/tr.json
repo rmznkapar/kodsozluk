@@ -14,7 +14,8 @@
     "noEntry": "Burada görüntülenecek entry yok 😞"
   },
   "navbar": {
-    "profile": "Profilim"
+    "profile": "Profilim",
+    "search": "Başlık ara"
   },
   "error": {
     "short-username": "Kullanıcı adınız en az 4 karakter olmalı",

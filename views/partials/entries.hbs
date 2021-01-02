@@ -13,13 +13,25 @@
         {{title}}
       </a>
     {{/unless}}
-    <div class="content">
-      {{body}}
+    <div class="content is-flex is-align-items-center mb-0">
+      <div class="vote-group is-flex is-flex-direction-column is-align-items-center pr-3" data-active="{{findVote ../userId votes }}">
+        <a class="vote-item up is-size-4" aria-label="up" data-id="{{_id}}" data-rate="1">
+          ▲
+        </a>
+        <span class="vote-rate">{{voteRate}}</span>
+        <a class="vote-item down is-size-4" aria-label="down" data-id="{{_id}}" data-rate="-1">
+          ▼
+        </a>
+      </div>
+      <p>{{body}}</p>
     </div>
-    <div class="bottom is-flex is-justify-content-flex-end">
-      <a href="/user/{{user.username}}">
-        {{user.username}}
-      </a>
+    <div class="level">
+      <div class="level-left"></div>
+      <div class="level-right">
+        <a href="/user/{{user.username}}">
+          {{user.username}}
+        </a>
+      </div>
     </div>
   </div>
 {{/each}}

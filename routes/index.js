@@ -8,4 +8,8 @@ router.get('/term/:title/:page?', indexController.getTerm);
 
 router.post('/term/:title/:page?', indexController.postTerm);
 
+router.post('/vote', indexController.vote)
+
+// router.post('/search', indexController.postSearch)
+
 module.exports = router;
