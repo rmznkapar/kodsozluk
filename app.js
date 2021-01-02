@@ -33,7 +33,6 @@ app.engine( 'hbs', hbs( {
     findVote: (elem, list) => {
       for (let i = 0; i < list.length; i++) {
         const element = list[i];
-        console.log(element.userId, elem);
         if (element.userId == elem) {
           return element.rate;
         }
